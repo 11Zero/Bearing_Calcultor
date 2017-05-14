@@ -16,7 +16,7 @@ namespace PcrCalcultor
         /// <param name="Q">下碗扣抗剪强度设计值，取60</param>
         /// <param name="EI">弯曲刚度</param>
         /// <returns>弹簧刚度值</returns>
-        static double Solvek(double l, double h, double Q,double EI)
+        public static double Solvek(double l, double h, double Q,double EI)
         {
             double k1 = 12 * EI / (l * l * l + h * l * l);
             double k2 = Q / l;
@@ -31,9 +31,9 @@ namespace PcrCalcultor
         /// <param name="h">步距</param>
         /// <param name="EI">弯曲刚度</param>
         /// <returns>半波数</returns>
-        static double Solven(double L, double k, double h, double EI)
+        public static double Solven(double L, double k, double h, double EI)
         {
-            return Math.Round(Math.Pow(L/pi,4)*Math.Sqrt(k/h/EI));
+            return Math.Round(L/pi*Math.Pow(k/h/EI,0.25));
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace PcrCalcultor
         /// <param name="beta_J">剪刀撑修正系数</param>
         /// <param name="EI">弯曲刚度</param>
         /// <returns>临界荷载</returns>
-        static double SolvePcr(double n, double L,double beta_alpha, double beta_L, double beta_J, double EI)
+        public static double SolvePcr(double n, double L, double beta_alpha, double beta_L, double beta_J, double EI)
         {
             return 2*n*n*pi*pi*EI*beta_J/Math.Pow(beta_alpha*beta_L*L,2);
         }
@@ -59,10 +59,9 @@ namespace PcrCalcultor
         /// <param name="h">步距</param>
         /// <param name="nx">受力薄弱区间支架跨数</param>
         /// <returns>betaalpha</returns>
-        static double Solvealpha(double sdg_h, double xbg_h, double h, int nx)
+        public static double Solvealpha(double sdg_h, double xbg_h, double h, int nx)
         {
-            double step1 = 0.0;-+
-
+            double step1 = 0.0;
             double step2 = 0.0;
             double step3 = 0.0;
             switch (nx)
@@ -113,6 +112,41 @@ namespace PcrCalcultor
             else
             {
                 result = step3;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 计算betaL参数
+        /// </summary>
+        /// <param name="L">架体高度</param>
+        /// <returns>betaL</returns>
+        public static double SolvebetaL(double L)
+        {
+            double result = 0.0;
+            if (L<=5)
+            {
+                result = 1.0;
+            }
+            else if (L <= 10)
+            {
+                result = (L - 5) / 5 * 0.11 + 1.0;
+            }
+            else if (L <= 20)
+            {
+                result = (L - 10) / 10 * 0.05 + 1.11;
+            }
+            else if (L <= 30)
+            {
+                result = (L - 20) / 10 * 0.03 + 1.16;
+            }
+            else if (L <= 40)
+            {
+                result = (L - 30) / 10 * 0.03 + 1.19;
+            }
+            else
+            {
+                result = 1.22;
             }
             return result;
         }

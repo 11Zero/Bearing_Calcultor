@@ -1,0 +1,4 @@
+D:\C++公用文件夹\My Projects_VS2010\Bearing_Calcultor\PcrCalcultor\PcrCalcultor\bin\Release\PcrCalcultor.dll
+D:\C++公用文件夹\My Projects_VS2010\Bearing_Calcultor\PcrCalcultor\PcrCalcultor\bin\Release\PcrCalcultor.pdb
+D:\C++公用文件夹\My Projects_VS2010\Bearing_Calcultor\PcrCalcultor\PcrCalcultor\obj\Release\PcrCalcultor.dll
+D:\C++公用文件夹\My Projects_VS2010\Bearing_Calcultor\PcrCalcultor\PcrCalcultor\obj\Release\PcrCalcultor.pdb
